@@ -33,27 +33,27 @@ public class TextAdventure
 
     // get user input and go to the appropriate zone based on their input
     input = inScanner.nextLine();
-    if(input.contentEquals("City"))
+    if(input.contentEquals("city"))
     {
     	ourHero.enterZone1();
     }
-    else if(input.contentEquals("Zone 2"))
+    else if(input.contentEquals("forest"))
     {
     	ourHero.enterZone2();
     }
-    else if(input.contentEquals("Zone 3"))
+    else if(input.contentEquals("mountains"))
     {
     	ourHero.enterZone3();
     }
-    else if(input.contentEquals("Zone 4"))
+    else if(input.contentEquals("grave"))
     {
     	ourHero.enterZone4();
     }
-    else if(input.contentEquals("Zone 5"))
+    else if(input.contentEquals("village"))
     {
     	ourHero.enterZone5();
     }
-    else if(input.contentEquals("Zone 6"))
+    else if(input.contentEquals("beach"))
     {
     	ourHero.enterZone6();
     }
@@ -67,11 +67,11 @@ public class TextAdventure
   private void enterZone1()
   {
     // change image
-    // ADD CODE HERE
+    console.setImage("city.png");
 
     // describe the area/situation to the user. 
     // Give them options for choices.
-    // ADD CODE HERE
+    System.out.println(ourHero.getName() + " Walks into the city and see a wanted poster near a cafe \n it says \"WANTED DEAD OR ALIVE The Three P's \" \n\n Do you want to get this bounty (y/n)?\n\n");
 
     // Take action or go to another zone based on their choice
     // ADD CODE HERE
@@ -151,7 +151,6 @@ public class TextAdventure
   private void gameEnd()
   {
     // ADD CODE HERE
-
     inScanner.close();
   }
 }
