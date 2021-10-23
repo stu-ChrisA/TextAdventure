@@ -1,4 +1,4 @@
-import java.util.*;
+import java.util.Scanner;
 
 public class TextAdventure 
 {
@@ -29,38 +29,37 @@ public class TextAdventure
     ourHero.changeName(input);
     
     // describe the starting situation. Feel free to change this
-    System.out.println("You wake up to find yourself on the edge of a shadowy forest with the sun nearly set. \nYou see what looks like a city in the distance. \nWhat would you like to do?\n \ncity: go towards the \"City\"? \nforest: turn around and re-enter the forest\nnap: go back to sleep\nmountains: Go up the steep mountains to check out the cave\ngrave: enter \"dead mans\" grave\nbeach: go to the beach and explore a \"ship reck\"\nvillage: go into the near by village " + ourHero.getName() + ": ");
+    System.out.println("You wake up to find yourself on the edge of a shadowy forest with the sun nearly set. \nYou see what looks like a city in the distance. \nWhat would you like to do?\n \ncity: go towards the \"City\"? \nforest: turn around and re-enter the forest\nnap: go back to sleep\nmountains: Go up the steep mountains to check out the cave\ngrave: enter \"dead mans\" grave\nbeach: go to the beach and explore a \"ship reck\"\nvillage: go into the near by village\n\n " + ourHero.getName() + ": ");
 
     // get user input and go to the appropriate zone based on their input
-    String zones;
-    zones = inScanner.nextLine();
-    if(zones.contentEquals("city"))
+    input = inScanner.nextLine();
+    if(input.equalsIgnoreCase("city"))
     {
-    	ourHero.enterZone1();
+    	enterZone1();
     }
-    else if(zones.contentEquals("forest"))
+    else if(input.equalsIgnoreCase("forest"))
     {
-    	ourHero.enterZone2();
+    	enterZone2();
     }
-    else if(zones.contentEquals("mountains"))
+    else if(input.equalsIgnoreCase("mountains"))
     {
-    	ourHero.enterZone3();
+    	enterZone3();
     }
-    else if(zones.contentEquals("grave"))
+    else if(input.equalsIgnoreCase("grave"))
     {
-    	ourHero.enterZone4();
+    	enterZone4();
     }
-    else if(zones.contentEquals("village"))
+    else if(input.equalsIgnoreCase("village"))
     {
-    	ourHero.enterZone5();
+    	enterZone5();
     }
-    else if(zones.contentEquals("beach"))
+    else if(input.equalsIgnoreCase("beach"))
     {
-    	ourHero.enterZone6();
+    	enterZone6();
     }
-    else if(zones.contentEquals("nap"))
+    else if(input.equalsIgnoreCase("nap"))
     {
-    	ourHero.gameEnd();
+    	gameEnd();
     }
 
   }
@@ -68,14 +67,77 @@ public class TextAdventure
   private void enterZone1()
   {
     // change image
+
     console.setImage("city.png");
 
     // describe the area/situation to the user. 
     // Give them options for choices.
-    System.out.println(ourHero.getName() + " Walks into the city and see a wanted poster near a cafe \n it says \"WANTED DEAD OR ALIVE The Three P's \" \n\n Do you want to get this bounty (y/n)?\n\n");
+
+    console.setImage("pumpkintrio.png");
+    System.out.println("\n" + ourHero.getName() + " Walks into the city and see a wanted poster near a cafe \n it says \"WANTED DEAD OR ALIVE The Three P's \" \n\nDo you want to get this bounty: (y/n): ");
+    String userInpuString = inScanner.nextLine();
 
     // Take action or go to another zone based on their choice
-    // ADD CODE HERE
+    if(userInpuString.equalsIgnoreCase("y"))
+    {
+      console.setImage("city.png");
+      System.out.println(ourHero.getName() + "goes into the cafe and ask the bartender about the wanted poster \n\nBartender: \"Well I've heard that the monster have been terroizing the people in the city for a while, stealing things left and right making the city a living hell\"");
+      System.out.println("Bartender: \"Hey " + ourHero.getName() + " are you looking to get the 500 gold bounty?");
+      System.out.println(ourHero.getName() + " \"Yes I am\" ");
+      System.out.println("Bartender: \"Alright the Three P's are near the town hall, Please I beg of you get RID OF THEM\". ");
+      System.out.println(ourHero.getName() + " \"No problem I'm glad to help\"\n");
+      System.out.println("\"" + ourHero.getName() + " start walking to the town hall and gets there pretty quickly\"");
+      System.out.println("You then see in the corner of your eye the Three P's. You go after them, do you want to use your \"sword\" or \"axe\" to chase them down with?\n");
+
+      String weapon = inScanner.nextLine();
+      if(weapon.equalsIgnoreCase("sword"))
+      {
+        System.out.println("\n" + ourHero.getName() + "takes out their weapon and chases the monsters for a small period of time before catching up to them");
+      }
+      else if(weapon.equalsIgnoreCase("axe"))
+      {
+        System.out.println("\n" + ourHero.getName() + "takes out their weapon and chases the monsters for a long period of time before catching up to them");
+      }
+      System.out.println(ourHero.getName() + " starts fighting the Three P's and attacks them first (type \"yes\" to start the fight\n");
+      int randomAttackForMonster = (int)(Math.random());
+      int randomAttackForHero = (int) (Math.random());
+      int monsterHealth = 50;
+      String inputFight = inScanner.nextLine();
+
+      //Add code for fight that doesn't cause loops(Note to self)
+
+    }
+    else if(userInpuString.equalsIgnoreCase("n"))
+    {
+      console.setImage("city.png");
+      System.out.println("Man that's boring\n");
+      System.out.println("Where do you want to go then?\n\nforest: turn around and re-enter the forest\nnap: go back to sleep\nmountains: Go up the steep mountains to check out the cave\ngrave: enter \"dead mans\" grave\nbeach: go to the beach and explore a \"ship reck\"\nvillage: go into the near by village\n\n " + ourHero.getName() + ": ");
+      String inputUser = inScanner.nextLine();
+      if(inputUser.equalsIgnoreCase("forest"))
+      {
+    	  enterZone2();
+      }
+      else if(inputUser.equalsIgnoreCase("mountains"))
+      {
+    	  enterZone3();
+      }
+      else if(inputUser.equalsIgnoreCase("grave"))
+      {
+    	  enterZone4();
+      }
+      else if(inputUser.equalsIgnoreCase("village"))
+      {
+    	  enterZone5();
+      }
+      else if(inputUser.equalsIgnoreCase("beach"))
+      {
+    	  enterZone6();
+      }
+        else if(inputUser.equalsIgnoreCase("nap"))
+      {
+    	  gameEnd();
+      }
+    }
 
   }
 
@@ -152,6 +214,34 @@ public class TextAdventure
   private void gameEnd()
   {
     // ADD CODE HERE
-    inScanner.close();
+    console.setImage("gameOver.png");
+    System.out.println("Play again? (y/n)\n");
+    String StartOver = inScanner.nextLine();
+    if(StartOver.equalsIgnoreCase("y"))
+    {
+      play();
+    }
+    else if(StartOver.equalsIgnoreCase("n"))
+    {
+      System.out.println("Thanks for playing!");
+      inScanner.close();
+    }
+  }
+  private void gameEndFinal()
+  {
+    String StartOver2 = inScanner.nextLine();
+    // ADD CODE HERE
+    console.setImage("Victory.png");
+    System.out.println("Play again? (y/n)");
+    if(StartOver2.equalsIgnoreCase("y"))
+    {
+      play();
+    }
+    else if(StartOver2.equalsIgnoreCase("n"))
+    {
+      System.out.println("Thanks for playing!");
+      System.out.println("You can close the game now");
+      inScanner.close();
+    }
   }
 }

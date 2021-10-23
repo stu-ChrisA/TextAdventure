@@ -13,7 +13,7 @@ public class Player
     gold = startingGold;
   }
 
-  public String getName()
+public String getName()
   {
     return name;
   }
@@ -28,9 +28,9 @@ public class Player
     return health;
   }
 
-  public void setHealth(int newHealth)
+  public void setHealth()
   {
-    health = newHealth;
+    health = health - 5;
   }
 
   public double getGold()
