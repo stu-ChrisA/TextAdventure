@@ -32,32 +32,33 @@ public class TextAdventure
     System.out.println("You wake up to find yourself on the edge of a shadowy forest with the sun nearly set. \nYou see what looks like a city in the distance. \nWhat would you like to do?\n \ncity: go towards the \"City\"? \nforest: turn around and re-enter the forest\nnap: go back to sleep\nmountains: Go up the steep mountains to check out the cave\ngrave: enter \"dead mans\" grave\nbeach: go to the beach and explore a \"ship reck\"\nvillage: go into the near by village " + ourHero.getName() + ": ");
 
     // get user input and go to the appropriate zone based on their input
-    input = inScanner.nextLine();
-    if(input.contentEquals("city"))
+    String zones;
+    zones = inScanner.nextLine();
+    if(zones.contentEquals("city"))
     {
     	ourHero.enterZone1();
     }
-    else if(input.contentEquals("forest"))
+    else if(zones.contentEquals("forest"))
     {
     	ourHero.enterZone2();
     }
-    else if(input.contentEquals("mountains"))
+    else if(zones.contentEquals("mountains"))
     {
     	ourHero.enterZone3();
     }
-    else if(input.contentEquals("grave"))
+    else if(zones.contentEquals("grave"))
     {
     	ourHero.enterZone4();
     }
-    else if(input.contentEquals("village"))
+    else if(zones.contentEquals("village"))
     {
     	ourHero.enterZone5();
     }
-    else if(input.contentEquals("beach"))
+    else if(zones.contentEquals("beach"))
     {
     	ourHero.enterZone6();
     }
-    else if(input.contentEquals("nap"))
+    else if(zones.contentEquals("nap"))
     {
     	ourHero.gameEnd();
     }
