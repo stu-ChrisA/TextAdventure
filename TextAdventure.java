@@ -99,12 +99,42 @@ public class TextAdventure
         System.out.println("\n" + ourHero.getName() + "takes out their weapon and chases the monsters for a long period of time before catching up to them");
       }
       System.out.println(ourHero.getName() + " starts fighting the Three P's and attacks them first (type \"yes\" to start the fight\n");
-      int randomAttackForMonster = (int)(Math.random());
-      int randomAttackForHero = (int) (Math.random());
       int monsterHealth = 50;
-      String inputFight = inScanner.nextLine();
 
       //Add code for fight that doesn't cause loops(Note to self)
+      while(true)
+      {
+        double randomAttackForMonster = Math.random();
+        double HeroChanceOfHitMonster = Math.random();
+        double monsterRandomChanceOfHit = Math.random();
+        if(randomAttackForMonster > 0.5)
+        {
+          if(monsterRandomChanceOfHit > randomAttackForMonster)
+          {
+            ourHero.setHealth();
+            System.out.println("Monster Hit!");
+          }
+          else if(ourHero.getHealth() == 0)
+          {
+            gameEnd();
+            break;
+          }
+        }
+        else if(randomAttackForMonster < 0.5)
+        {
+          System.out.println("This is your chance to fight back!\nGuess a number between 0 and 1 to see if you hit them or not\n");
+          double hitMonster = inScanner.nextDouble();
+          if(HeroChanceOfHitMonster < hitMonster)
+          {
+            System.out.println("You got a hit!");
+            monsterHealth = monsterHealth - 5;
+          }
+          else if(monsterHealth == 0)
+          {
+            break;
+          }
+        }
+      }
 
     }
     else if(userInpuString.equalsIgnoreCase("n"))
