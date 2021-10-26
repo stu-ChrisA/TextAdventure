@@ -166,15 +166,66 @@ public class TextAdventure
 
   }
 
-  private void enterZone2()
+  private void enterZone2() throws InterruptedException
   {
                                                                                                                                               //forest
     // change image
-    // ADD CODE HERE
+    console.setImage("set image later");
 
     // describe the area/situation to the user. 
     // Give them options for choices.
-    // ADD CODE HERE
+    Thread.sleep(2000);
+    System.out.println("You start walking towards the forest where you started and in the distance you see a tree house.\nYou figured that it's the hooded mans base and when you get to the enterance of the base you see the hooded man.");
+    System.out.println("Hooded man: \"Well, well, well "+ ourHero.getName() + " it seems you defeated my servent it's time to finish you off myself then!");
+    System.out.println("Type \"start\" when you're ready");
+    String HoodedFigureFight = inScanner.next();
+    int HoodedHealth = 75;
+    if(JSquidFight.equals("fight"))
+    {
+        while(true)
+        {
+            double randomAttackForHoodedF = Math.random();
+            double HeroChanceOfHitHooded = Math.random();
+            double HoodedFRandomChanceOfHit = Math.random();
+            if(randomAttackForHoodedF > 0.5)
+            {
+                if(HoodedFRandomChanceOfHit > randomAttackForHoodedF)
+                {
+                    ourHero.setHealth(); //Make a method in player class to regain player health
+                    System.out.println("The hooded figure landed a Hit!");
+                    System.out.println("Current health is: " + ourHero.getHealth());
+                }
+                else if(ourHero.getHealth() == 0)
+                {
+                    gameEnd();
+                    break;
+                }
+            }
+            else if(randomAttackForHoodedF < 0.5)
+            {
+                System.out.println("This is your chance to fight back!\nGuess a number between 0 and 1 to see if you hit them or not\n");
+                double hitHooded = inScanner.nextDouble();
+                if(HeroChanceOfHitHooded < hitHooded)
+                {
+                    System.out.println("You got a hit!");
+                    HoodedHealth = HoodedHealth - 20; //Use player object
+                    System.out.println("Monster current health is: " + HoodedHealth); //Same here use player java
+                    if(HoodedHealth <= 5) 
+                    {
+                        ourHero.defeatMonster();
+                        //ourHero.regainHealth() add health
+                        System.out.println("Hooded figure: \"Shoot I need to get out of here.\"");
+                        System.out.println(ourHero.getName() + " \"Give me the gold from the treasure and the gold you stole from me\"");
+                        System.out.println("Hooded figure: \" No never!\"");
+                        System.out.println("You start chasing the hooded figure and he runs through the village");
+                        enterZone5();
+                        
+                    }
+                }
+            }
+        }
+    }
+    
 
     // Take action or go to another zone based on their choice
     // ADD CODE HERE
@@ -275,7 +326,7 @@ public class TextAdventure
     // Give them options for choices.
     System.out.println():
     System.out.println(ourHero.getName() + " and the Hooded figure arrive at the beach\nand they see a ship-reck in the distance. You both walk towards the ship-reck to see if the ghost was lying or not.\n When you both go inside you see the treasure the ghost was talking about.");
-    System.out.println("The Hooded figure realized that the ghost was telling truth and pushed you to the ground.\nYou chase him further into the ship reck but you need to fight against his servent \"JSquid\".");
+    System.out.println("The Hooded figure realized that the ghost was telling truth and took 200 gold from you + the treasure and pushed you to the ground.\nYou chase him further into the ship reck but you need to fight against his servent \"JSquid\".");
     System.out.println("Type \"fight\" to start the fight");
     String JSquidFight = inScanner.next();
     int JSquidHealth = 150;
@@ -313,7 +364,8 @@ public class TextAdventure
                     {
                         ourHero.defeatMonster();
                         //ourHero.regainHealth() add health
-                        System.out.println("JSquid: \"Ok ok I'm done you win, his base is at
+                        System.out.println("JSquid: \"Ok ok I'm done you win, his base is deep in the forest\".");
+                        enterZone2();
                     }
                 }
             }
