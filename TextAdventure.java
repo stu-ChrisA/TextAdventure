@@ -304,12 +304,63 @@ public class TextAdventure
   {
                                                                                                                                     //village
     // change image
-    // ADD CODE HERE
+    console.setImage("village.png");
 
     // describe the area/situation to the user. 
     // Give them options for choices.
-    // ADD CODE HERE
-
+    Thread.sleep(2000);
+    System.out.println();
+    System.out.println("You keep chasing them but spontaniouly they use a smoke bomb to get away.\nYou get upset that you lost him but someone close by saw where he went.");
+    System.out.println("Eddie: \"Hey! You there, your name is " + ourHero.getName() + " right? if you wanna know where the mysterious man went pay me " + ourHero.getGold + " or you can play my little game\"");
+    System.out.println("Type \"pay\" if you're willing to pay him or type \"game\" if you're willing to play is little game");
+    String EddieG = inScanner.next();
+    if(EddieG.equals("pay")
+    {
+        System.out.println();
+        System.out.println("Eddie: \"Thanks "+ ourHero.getName() + " The hooded man ran towards the mountains.");
+    }
+    else if(EddieG.equals("game")
+    {
+        //blackjack - 21 card game
+        Scanner input = new Scanner(System.in);
+	    int cardOne,cardTwo,cardThree;
+        int dealer1, dealer2, dealer3; // dealer’s cards
+        int dealerTotal,playerTotal;
+        int playerResponse; // Player wants another card
+	    cardOne = (int)(Math.random()*(10 - 1)) + 1;
+	    cardTwo = (int)(Math.random()*(10 - 1)) + 1;
+        playerTotal = cardOne + cardTwo;
+	
+	    System.out.println("Players cards: " + cardOne + " " + cardTwo + " " + "and total: " + playerTotal);
+	    System.out.print("Do you want another card? Enter 1 if yes or enter 2 if no: ");
+	    playerResponse = inScanner.nextInt();
+	
+	    if(playerResponse == 1)
+	    {
+		    cardThree = (int)Math.random()*10 + 1;
+		    playerTotal += cardThree;
+		    System.out.println("the new card is " + cardThree + " and total is "+ playerTotal);
+	    }
+	    
+	    dealer1 = (int)(Math.random()*(10 - 1)) + 1;
+	    dealer2 = (int)(Math.random()*(10 - 1)) + 1;
+	    dealer3 = (int)(Math.random()*(10 - 1)) + 1;
+	    dealerTotal = dealer1 + dealer2 + dealer3;
+	    System.out.println("dealer cards are: " + dealer1 + " " + dealer2 + " " + dealer3 + " and dealer's total: " + dealerTotal);
+	
+        if(playerTotal > 21){
+            System.out.println("\nPlayer loses");
+        }
+        else if (dealerTotal > 21){
+            System.out.println("\nPlayer wins");
+        }
+        else if(playerTotal > dealerTotal){
+            System.out.println("\nPlayer wins");
+        }
+        else if(playerTotal < dealerTotal){
+            System.out.println("\nDealer wins");
+        }
+    }
     // Take action or go to another zone based on their choice
     // ADD CODE HERE
     
@@ -326,6 +377,7 @@ public class TextAdventure
     // Give them options for choices.
     System.out.println():
     System.out.println(ourHero.getName() + " and the Hooded figure arrive at the beach\nand they see a ship-reck in the distance. You both walk towards the ship-reck to see if the ghost was lying or not.\n When you both go inside you see the treasure the ghost was talking about.");
+    ourHero.setGold(400);
     System.out.println("The Hooded figure realized that the ghost was telling truth and took 200 gold from you + the treasure and pushed you to the ground.\nYou chase him further into the ship reck but you need to fight against his servent \"JSquid\".");
     System.out.println("Type \"fight\" to start the fight");
     String JSquidFight = inScanner.next();
