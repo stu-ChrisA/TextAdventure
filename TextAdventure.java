@@ -73,7 +73,7 @@ public class TextAdventure
         System.out.println("\n" + ourHero.getName() + "takes out their weapon and chases the monsters for a long period of time before catching up to them");
       }
       System.out.println(ourHero.getName() + " starts fighting the Three P's and attacks them first (type \"yes\" to start the fight\n");
-      int monsterHealth = 50;
+      int monsterHealth = 50; // Put this value in Player.java
 
       //Add code for fight that doesn't cause loops(Note to self)
       while(true)
@@ -102,11 +102,11 @@ public class TextAdventure
           if(HeroChanceOfHitMonster < hitMonster)
           {
             System.out.println("You got a hit!");
-            monsterHealth = monsterHealth - 5;
-            System.out.println("Monster current health is: " + monsterHealth);
-            if(monsterHealth <= 0 )
+            monsterHealth = monsterHealth - 5; //Use player object
+            System.out.println("Monster current health is: " + monsterHealth); //Same here use player java
+            if(monsterHealth <= 0 ) //Same here as well
             {
-              ourHero.defeatMonster();
+              ourHero.defeatMonster(); //adds 1 to the counter
               System.out.println("You've defeated the Three P's. Now it time to return to the cafe and claim your reward");
               Thread.sleep(1000);
               console.setImage("download.png");
@@ -228,6 +228,7 @@ public class TextAdventure
         int guessNum = inScanner.nextInt();
         if(guessNum == randomnumber)
         {
+          //ourHero.defeatedMonster(); Won aganist boo
           System.out.println("The Boo: \"Fine you win the next treasure is located at the beach near the ship reck\"");
           enterZone6();
           break;
