@@ -229,6 +229,8 @@ public class TextAdventure
         if(guessNum == randomnumber)
         {
           //ourHero.defeatedMonster(); Won aganist boo
+          System.out.println("The Boo: \"Ugh, you got lucky here's 100 coins\"");
+          ourHero.setGold(600);
           System.out.println("The Boo: \"Fine you win the next treasure is located at the beach near the ship reck\"");
           enterZone6();
           break;
@@ -262,18 +264,61 @@ public class TextAdventure
     
   }
 
-  private void enterZone6() 
+  private void enterZone6() throws InterruptedException
   {
                                                                                                                                     //Beach
     // change image
     // ADD CODE HERE
+    console.setImage("add image here later"):
 
     // describe the area/situation to the user. 
     // Give them options for choices.
-    // ADD CODE HERE
-
-    // Take action or go to another zone based on their choice
-    // ADD CODE HERE
+    System.out.println():
+    System.out.println(ourHero.getName() + " and the Hooded figure arrive at the beach\nand they see a ship-reck in the distance. You both walk towards the ship-reck to see if the ghost was lying or not.\n When you both go inside you see the treasure the ghost was talking about.");
+    System.out.println("The Hooded figure realized that the ghost was telling truth and pushed you to the ground.\nYou chase him further into the ship reck but you need to fight against his servent \"JSquid\".");
+    System.out.println("Type \"fight\" to start the fight");
+    String JSquidFight = inScanner.next();
+    int JSquidHealth = 150;
+    if(JSquidFight.equals("fight"))
+    {
+        while(true)
+        {
+            double randomAttackForJSquid = Math.random();
+            double HeroChanceOfHitJSquid = Math.random();
+            double JSquidRandomChanceOfHit = Math.random();
+            if(randomAttackForJSquid > 0.5)
+            {
+                if(JSquidRandomChanceOfHit > randomAttackForJSquid)
+                {
+                    ourHero.setHealth(); //Make a method in player class to regain player health
+                    System.out.println("JSquid landed a Hit!");
+                    System.out.println("Current health is: " + ourHero.getHealth());
+                }
+                else if(ourHero.getHealth() == 0)
+                {
+                    gameEnd();
+                    break;
+                }
+            }
+            else if(randomAttackForJSquid < 0.5)
+            {
+                System.out.println("This is your chance to fight back!\nGuess a number between 0 and 1 to see if you hit them or not\n");
+                double hitMonster = inScanner.nextDouble();
+                if(HeroChanceOfHitJSquid < hitMonster)
+                {
+                    System.out.println("You got a hit!");
+                    JSquidHealth = JSquidHealth - 20; //Use player object
+                    System.out.println("Monster current health is: " + JSquidHealth); //Same here use player java
+                    if(JSquidHealth <= 0) 
+                    {
+                        ourHero.defeatMonster();
+                        //ourHero.regainHealth() add health
+                        System.out.println("JSquid: \"Ok ok I'm done you win, his base is at
+                    }
+                }
+            }
+        }
+    }
     
   }
 
