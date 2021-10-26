@@ -51,4 +51,8 @@ public String getName()
   {
     monstersDefeated++;
   }
+  public void gainHealth(int newHealth)
+  {
+    health = newHealth;
+  }
 }

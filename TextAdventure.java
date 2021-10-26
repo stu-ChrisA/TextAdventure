@@ -49,10 +49,10 @@ public class TextAdventure
     Thread.sleep(3000);
     System.out.println("\n" + ourHero.getName() + " Walks into the city and see a wanted poster near a cafe \n it says \"WANTED DEAD OR ALIVE The Three P's \" \n\nDo you want to get this bounty: (y/n): ");
     console.setImage("pumpkintrio.png");
-    String userInpuString = inScanner.nextLine();
+    String userInputString = inScanner.nextLine();
 
     // Take action or go to another zone based on their choice
-    if(userInpuString.equalsIgnoreCase("y"))
+    if(userInputString.equalsIgnoreCase("y"))
     {
       console.setImage("city.png");
       System.out.println(ourHero.getName() + "goes into the cafe and ask the bartender about the wanted poster \n\nBartender: \"Well I've heard that the monster have been terroizing the people in the city for a while, stealing things left and right making the city a living hell\"");
@@ -66,13 +66,13 @@ public class TextAdventure
       String weapon = inScanner.nextLine();
       if(weapon.equalsIgnoreCase("sword"))
       {
-        System.out.println("\n" + ourHero.getName() + "takes out their weapon and chases the monsters for a small period of time before catching up to them");
+        System.out.println("\n" + ourHero.getName() + " takes out their weapon and chases the monsters for a small period of time before catching up to them");
       }
       else if(weapon.equalsIgnoreCase("axe"))
       {
-        System.out.println("\n" + ourHero.getName() + "takes out their weapon and chases the monsters for a long period of time before catching up to them");
+        System.out.println("\n" + ourHero.getName() + " takes out their weapon and chases the monsters for a long period of time before catching up to them");
       }
-      System.out.println(ourHero.getName() + " starts fighting the Three P's and attacks them first (type \"yes\" to start the fight\n");
+      System.out.println(ourHero.getName() + " starts fighting the Three P's and attacks them first.");
       int monsterHealth = 50; // Put this value in Player.java
 
       //Add code for fight that doesn't cause loops(Note to self)
@@ -132,7 +132,7 @@ public class TextAdventure
         } 
       }
     }
-    else if(userInpuString.equalsIgnoreCase("n"))
+    else if(userInputString.equalsIgnoreCase("n"))
     {
       console.setImage("city.png");
       System.out.println("Man that's boring\n");
@@ -170,17 +170,17 @@ public class TextAdventure
   {
                                                                                                                                               //forest
     // change image
-    console.setImage("set image later");
+    console.setImage("forestdeeep.png");
 
     // describe the area/situation to the user. 
     // Give them options for choices.
     Thread.sleep(2000);
     System.out.println("You start walking towards the forest where you started and in the distance you see a tree house.\nYou figured that it's the hooded mans base and when you get to the enterance of the base you see the hooded man.");
     System.out.println("Hooded man: \"Well, well, well "+ ourHero.getName() + " it seems you defeated my servent it's time to finish you off myself then!");
-    System.out.println("Type \"start\" when you're ready");
+    System.out.println("Type \"fight\" when you're ready\n");
     String HoodedFigureFight = inScanner.next();
     int HoodedHealth = 75;
-    if(JSquidFight.equals("fight"))
+    if(HoodedFigureFight.equals("fight"))
     {
         while(true)
         {
@@ -208,8 +208,8 @@ public class TextAdventure
                 if(HeroChanceOfHitHooded < hitHooded)
                 {
                     System.out.println("You got a hit!");
-                    HoodedHealth = HoodedHealth - 20; //Use player object
-                    System.out.println("Monster current health is: " + HoodedHealth); //Same here use player java
+                    HoodedHealth = HoodedHealth - 5; //Use player object
+                    System.out.println("Hooded man current health is: " + HoodedHealth); //Same here use player java
                     if(HoodedHealth <= 5) 
                     {
                         ourHero.defeatMonster();
@@ -219,31 +219,83 @@ public class TextAdventure
                         System.out.println("Hooded figure: \" No never!\"");
                         System.out.println("You start chasing the hooded figure and he runs through the village");
                         enterZone5();
+                        break;
                         
                     }
                 }
             }
         }
     }
-    
-
-    // Take action or go to another zone based on their choice
-    // ADD CODE HERE
-    
   }
 
-  private void enterZone3()
+  private void enterZone3() throws InterruptedException
   {
                                                                                                                                             //mountains
     // change image
-    // ADD CODE HERE
+    console.setImage("mountain.png");
 
     // describe the area/situation to the user. 
-    // Give them options for choices.
-    // ADD CODE HERE
-
-    // Take action or go to another zone based on their choice
-    // ADD CODE HERE
+    System.out.println();
+    System.out.println("After your small coversation with eddie you thank him and keep up with the chase");
+    System.out.println("Hooded figure: \"Damn, I thought I lost you " + ourHero.getName() + "\"");
+    System.out.println("Hooded figure: \"Im going to finish you off once and for all\"");
+    ourHero.gainHealth(ourHero.getHealth() + 20);
+    System.out.println("Type \"fight\" to start the final fight.\n");
+    String FinalFight = inScanner.next();
+    int HoodedHealthFinal = 155;
+    if(FinalFight.equals("fight"))
+    {
+        while(true)
+        {
+            double randomAttackForHoodedFinal = Math.random();
+            double HeroChanceOfHitHoodedF = Math.random();
+            double HoodedFRandomChanceOfHit = Math.random();
+            if(randomAttackForHoodedFinal > 0.5)
+            {
+                if(HoodedFRandomChanceOfHit > randomAttackForHoodedFinal)
+                {
+                    ourHero.setHealth(); //Make a method in player class to regain player health
+                    System.out.println("The hooded figure landed a Hit!");
+                    System.out.println("Current health is: " + ourHero.getHealth());
+                }
+                else if(ourHero.getHealth() == 0)
+                {
+                    gameEnd();
+                    break;
+                }
+            }
+            else if(randomAttackForHoodedFinal < 0.5)
+            {
+                System.out.println("This is your chance to fight back!\nGuess a number between 0 and 1 to see if you hit them or not\n");
+                double hitHooded = inScanner.nextDouble();
+                if(HeroChanceOfHitHoodedF < hitHooded)
+                {
+                    System.out.println("You got a hit!");
+                    HoodedHealthFinal = HoodedHealthFinal - (int)(Math.random()) * 15; //Use player object
+                    System.out.println("Hooded man current health is: " + HoodedHealthFinal); //Same here use player java
+                    if(HoodedHealthFinal == 0) 
+                    {
+                        ourHero.defeatMonster();
+                        System.out.println("Hooded figure: \"Fine. You win I'm done.\"");
+                        System.out.println(ourHero.getName() + " \"Give me the gold from the treasure and the gold you stole from me\"");
+                        System.out.println("Hooded figure: \"Here.\"");
+                        System.out.println("You gain the 200 gold you lost and the treasure.\n do you want to open the treasure? (yes/no) ");
+                        String treasureEnd = inScanner.next();
+                        if(treasureEnd.equals("yes"))
+                        {
+                          System.out.println("You open the treasure and gained 1000 gold!");
+                        }
+                        else if(treasureEnd.equals("no"))
+                        {
+                          System.out.println("You leave the treasure behind and never find out what's inside");
+                        }
+                        gameEndFinal();
+                        break;
+                    }
+                }
+            }
+        }
+    }
     
   }
 
@@ -300,7 +352,7 @@ public class TextAdventure
     }
   }
 
-  private void enterZone5()
+  private void enterZone5() throws InterruptedException
   {
                                                                                                                                     //village
     // change image
@@ -311,59 +363,72 @@ public class TextAdventure
     Thread.sleep(2000);
     System.out.println();
     System.out.println("You keep chasing them but spontaniouly they use a smoke bomb to get away.\nYou get upset that you lost him but someone close by saw where he went.");
-    System.out.println("Eddie: \"Hey! You there, your name is " + ourHero.getName() + " right? if you wanna know where the mysterious man went pay me " + ourHero.getGold + " or you can play my little game\"");
-    System.out.println("Type \"pay\" if you're willing to pay him or type \"game\" if you're willing to play is little game");
+    System.out.println("Eddie: \"Hey! You there, your name is " + ourHero.getName() + " right? if you wanna know where the mysterious man went pay me " + ourHero.getGold() + " or you can play my little game\"");
+    System.out.println("Type \"pay\" if you're willing to pay him or type \"game\" if you're willing to play is little game\n");
     String EddieG = inScanner.next();
-    if(EddieG.equals("pay")
+    while(true)
     {
+        if(EddieG.equals("pay"))
+      {
         System.out.println();
         System.out.println("Eddie: \"Thanks "+ ourHero.getName() + " The hooded man ran towards the mountains.");
-    }
-    else if(EddieG.equals("game")
-    {
+        enterZone3();
+        break;
+      }
+      else if(EddieG.equals("game"))
+      {
         //blackjack - 21 card game
-        Scanner input = new Scanner(System.in);
-	    int cardOne,cardTwo,cardThree;
+	      int cardOne,cardTwo,cardThree;
         int dealer1, dealer2, dealer3; // dealer’s cards
         int dealerTotal,playerTotal;
-        int playerResponse; // Player wants another card
-	    cardOne = (int)(Math.random()*(10 - 1)) + 1;
-	    cardTwo = (int)(Math.random()*(10 - 1)) + 1;
+        String playerResponse; // Player wants another card
+	      cardOne = (int)(Math.random()*(10 - 1)) + 1;
+	      cardTwo = (int)(Math.random()*(10 - 1)) + 1;
         playerTotal = cardOne + cardTwo;
 	
-	    System.out.println("Players cards: " + cardOne + " " + cardTwo + " " + "and total: " + playerTotal);
-	    System.out.print("Do you want another card? Enter 1 if yes or enter 2 if no: ");
-	    playerResponse = inScanner.nextInt();
+	      System.out.println("Players cards: " + cardOne + " " + cardTwo + " " + "and total: " + playerTotal);
+	      System.out.println("Do you want another card? Enter \"yes\" or \"no\": ");
+	      playerResponse = inScanner.next();
 	
-	    if(playerResponse == 1)
-	    {
-		    cardThree = (int)Math.random()*10 + 1;
-		    playerTotal += cardThree;
-		    System.out.println("the new card is " + cardThree + " and total is "+ playerTotal);
-	    }
+	      if(playerResponse.equals("yes"))
+	      {
+		      cardThree = (int)Math.random()*10 + 1;
+		      playerTotal += cardThree;
+		      System.out.println("the new card is " + cardThree + " and total is "+ playerTotal);
+	      }
 	    
-	    dealer1 = (int)(Math.random()*(10 - 1)) + 1;
-	    dealer2 = (int)(Math.random()*(10 - 1)) + 1;
-	    dealer3 = (int)(Math.random()*(10 - 1)) + 1;
-	    dealerTotal = dealer1 + dealer2 + dealer3;
-	    System.out.println("dealer cards are: " + dealer1 + " " + dealer2 + " " + dealer3 + " and dealer's total: " + dealerTotal);
+	      dealer1 = (int)(Math.random()*(10 - 1)) + 1;
+	      dealer2 = (int)(Math.random()*(10 - 1)) + 1;
+	      dealer3 = (int)(Math.random()*(10 - 1)) + 1;
+	      dealerTotal = dealer1 + dealer2 + dealer3;
+	      System.out.println("dealer cards are: " + dealer1 + " " + dealer2 + " " + dealer3 + " and dealer's total: " + dealerTotal);
 	
-        if(playerTotal > 21){
-            System.out.println("\nPlayer loses");
+        if(playerTotal > 21)
+        {
+          System.out.println("\nPlayer loses");
+          System.out.println("Try Again!");
         }
-        else if (dealerTotal > 21){
+        else if (dealerTotal > 21)
+        {
             System.out.println("\nPlayer wins");
+            System.out.println("Eddie: \"Well that's the luck of the draw and since you won\n The hooded man keep running towards to the mountains\"");
+            enterZone3();
+            break;
         }
-        else if(playerTotal > dealerTotal){
+        else if(playerTotal > dealerTotal)
+        {
             System.out.println("\nPlayer wins");
+            System.out.println("Eddie: \"Well that's the luck of the draw and since you won\n The hooded man keep running towards to the mountains\"");
+            enterZone3();
+            break;
         }
-        else if(playerTotal < dealerTotal){
+        else if(playerTotal < dealerTotal)
+        {
             System.out.println("\nDealer wins");
+            System.out.println("Try again!");
         }
+      }
     }
-    // Take action or go to another zone based on their choice
-    // ADD CODE HERE
-    
   }
 
   private void enterZone6() throws InterruptedException
@@ -371,15 +436,16 @@ public class TextAdventure
                                                                                                                                     //Beach
     // change image
     // ADD CODE HERE
-    console.setImage("add image here later"):
+    console.setImage("beach.png");
 
     // describe the area/situation to the user. 
     // Give them options for choices.
-    System.out.println():
+    Thread.sleep(1000);
+    System.out.println();
     System.out.println(ourHero.getName() + " and the Hooded figure arrive at the beach\nand they see a ship-reck in the distance. You both walk towards the ship-reck to see if the ghost was lying or not.\n When you both go inside you see the treasure the ghost was talking about.");
     ourHero.setGold(400);
     System.out.println("The Hooded figure realized that the ghost was telling truth and took 200 gold from you + the treasure and pushed you to the ground.\nYou chase him further into the ship reck but you need to fight against his servent \"JSquid\".");
-    System.out.println("Type \"fight\" to start the fight");
+    System.out.println("Type \"fight\" to start the fight\n");
     String JSquidFight = inScanner.next();
     int JSquidHealth = 150;
     if(JSquidFight.equals("fight"))
@@ -415,15 +481,14 @@ public class TextAdventure
                     if(JSquidHealth <= 0) 
                     {
                         ourHero.defeatMonster();
-                        //ourHero.regainHealth() add health
                         System.out.println("JSquid: \"Ok ok I'm done you win, his base is deep in the forest\".");
                         enterZone2();
+                        break;
                     }
                 }
             }
         }
     }
-    
   }
 
   private void gameEnd() throws InterruptedException
@@ -442,7 +507,7 @@ public class TextAdventure
       inScanner.close();
     }
   }
-  /*private void gameEndFinal()
+  private void gameEndFinal() throws InterruptedException
   {
     String StartOver2 = inScanner.nextLine();
     // ADD CODE HERE
@@ -458,5 +523,5 @@ public class TextAdventure
       System.out.println("You can close the game now");
       inScanner.close();
     }
-  }*/
+  }
 }
