@@ -238,7 +238,7 @@ public class TextAdventure
     System.out.println();
     System.out.println("After your small coversation with eddie you thank him and keep up with the chase");
     System.out.println("Hooded figure: \"Damn, I thought I lost you " + ourHero.getName() + "\"");
-    System.out.println("Hooded figure: \"Im going to finish you off once and for all\"");
+    System.out.println("Hooded figure: \"I'm going to finish you off once and for all\"");
     ourHero.gainHealth(ourHero.getHealth() + 20);
     System.out.println("Type \"fight\" to start the final fight.\n");
     String FinalFight = inScanner.next();
@@ -271,9 +271,9 @@ public class TextAdventure
                 if(HeroChanceOfHitHoodedF < hitHooded)
                 {
                     System.out.println("You got a hit!");
-                    HoodedHealthFinal = HoodedHealthFinal - (int)(Math.random()) * 15; //Use player object
+                    HoodedHealthFinal = HoodedHealthFinal - 25; //Use player object
                     System.out.println("Hooded man current health is: " + HoodedHealthFinal); //Same here use player java
-                    if(HoodedHealthFinal == 0) 
+                    if(HoodedHealthFinal <= 0) 
                     {
                         ourHero.defeatMonster();
                         System.out.println("Hooded figure: \"Fine. You win I'm done.\"");
@@ -284,6 +284,7 @@ public class TextAdventure
                         if(treasureEnd.equals("yes"))
                         {
                           System.out.println("You open the treasure and gained 1000 gold!");
+                          ourHero.setGold(1200);
                         }
                         else if(treasureEnd.equals("no"))
                         {
@@ -317,7 +318,7 @@ public class TextAdventure
     Thread.sleep(5000);
     System.out.println("The Boo: \"Muahahahaha who dares come into MY graveyard?\"");
     System.out.println(ourHero.getName() + ": \"Tis was me I'm here to play your little game. :) ");
-    System.out.println("The Boo: \"Oh really? If you win ill let you get the treasure and tell you where the next turesure is and if I win I take 100 of your gold.\"");
+    System.out.println("The Boo: \"Oh really? If you win I'll let you get the treasure and tell you where the next turesure is and if I win I take 100 of your gold.\"");
     System.out.println(ourHero.getName() + ": \"Game on!\"");
     System.out.println("\nWhen you're ready type \"start\" to start the guessing game\n");
     String guessGameStart = inScanner.next();
@@ -512,6 +513,11 @@ public class TextAdventure
     String StartOver2 = inScanner.nextLine();
     // ADD CODE HERE
     console.setImage("Victory.png");
+    if(ourHero.getGold() == 0)
+    {
+      System.out.println("Really how is that possible. Zero gold?! That's JMAN level down bad");
+    }
+    System.out.println("You defeated " + ourHero.getMonstersDefeated() + " monsters nice!");
     System.out.println("Play again? (y/n)");
     if(StartOver2.equalsIgnoreCase("y"))
     {
